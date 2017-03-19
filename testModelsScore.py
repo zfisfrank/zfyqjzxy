@@ -29,7 +29,7 @@ for idx in catInfo.columns:
     cateLabels.append(pd.get_dummies(catInfo[idx]))
     # i = i+1
 # the cateLabels has been coverted to num for later use
-cateLabels = pd.concat(cateLabels,axis=1)
+cateLabels = pd.concat(cateLabels,axis=1) #三个dataframe 合成一个
 # all the features
 features = pd.concat([cateLabels,fullData[interestNumCols]],axis = 1)
 # features = fullData[interestNumCols]
@@ -82,6 +82,10 @@ def learnALgos(learningObj,trainData, testData, trainTarget, testTarget):
 
 # gammaList = pd.read_csv('paraList.csv')
 Parallel(n_jobs=3)(delayed(learnALgos)(learnObj,trainData, testData, trainTarget, testTarget) for learnObj in learningObjs)
+
+for learnObj in learningObjs:
+    learnALgos(learnObj,trainData, testData, trainTarget, testTarget)
+
 # for i in range(len(gammaList)):
 #     svm_fit(i,trainData, testData, trainTarget, testTarget)
 
