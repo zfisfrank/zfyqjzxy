@@ -45,8 +45,8 @@ trainData, testData, trainTarget, testTarget = train_test_split(features,movieSc
 # trainDataGross, testDataGross, trainTargetGross, testTargetGross = train_test_split(features,gross,test_size= .5)
 
 # claim learning objects here
-from sklearn.neural_network import MLPRegressor
-mlpR = MLPRegressor(hidden_layer_sizes = [8000,8000,8000,8000])
+# from sklearn.neural_network import MLPRegressor
+# mlpR = MLPRegressor(hidden_layer_sizes = [800,800])
 from sklearn import svm
 svR = svm.SVR(C = 5,gamma = 0.001)
 from sklearn.linear_model import Ridge
@@ -59,7 +59,8 @@ gradientBoost = ensemble.GradientBoostingRegressor()
 randForest = ensemble.RandomForestRegressor()
 
 # group all learning objects in to list for for loop to use
-learningObjs = [mlpR,svR,ridGe,adaBoost,bagging,extraTree,gradientBoost,randForest]
+# learningObjs = [mlpR,svR,ridGe,adaBoost,bagging,extraTree,gradientBoost,randForest]
+learningObjs = [svR,ridGe,adaBoost,bagging,extraTree,gradientBoost,randForest]
 
 # learning function to store learnt result
 from sklearn import metrics
