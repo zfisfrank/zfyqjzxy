@@ -29,9 +29,9 @@ for idx in catInfo.columns:
     cateLabels.append(pd.get_dummies(catInfo[idx]))
     # i = i+1
 # the cateLabels has been coverted to num for later use
-cateLabels = pd.concat(cateLabels,axis=1) #三个dataframe 合成一个
+cateFeatures = pd.concat(cateLabels,axis=1) #三个dataframe 合成一个
 # all the features
-features = pd.concat([cateLabels,fullData[interestNumCols]],axis = 1)
+features = pd.concat([cateFeatures,fullData[interestNumCols]],axis = 1)
 # features = fullData[interestNumCols]
 # fill na with average values, if the value is na, then mean give the determination average weight
 features = features.fillna(features.mean())
