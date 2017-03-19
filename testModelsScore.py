@@ -31,8 +31,8 @@ for idx in catInfo.columns:
 # the cateLabels has been coverted to num for later use
 cateLabels = pd.concat(cateLabels,axis=1)
 # all the features
-#features = pd.concat([cateLabels,fullData[interestNumCols]],axis = 1)
-features = fullData[interestNumCols]
+features = pd.concat([cateLabels,fullData[interestNumCols]],axis = 1)
+# features = fullData[interestNumCols]
 # fill na with average values, if the value is na, then mean give the determination average weight
 features = features.fillna(features.mean())
 # just used as to save a copy of modified features

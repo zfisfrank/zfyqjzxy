@@ -31,8 +31,8 @@ for idx in catInfo.columns:
 # the cateLabels has been coverted to num for later use
 cateLabels = pd.concat(cateLabels,axis=1)
 # all the features
-#features = pd.concat([cateLabels,fullData[interestNumCols]],axis = 1)
-features = fullData[interestNumCols]
+features = pd.concat([cateLabels,fullData[interestNumCols]],axis = 1)
+# features = fullData[interestNumCols]
 # fill na with average values, if the value is na, then mean give the determination average weight
 features = features.fillna(features.mean())
 # just used as to save a copy of modified features
@@ -46,7 +46,7 @@ trainData, testData, trainTarget, testTarget = train_test_split(gross,movieScore
 
 # claim learning objects here
 from sklearn.neural_network import MLPRegressor
-mlpR = MLPRegressor(hidden_layer_sizes = [8000,8000,8000,8000])
+mlpR = MLPRegressor(hidden_layer_sizes = [800,800])
 from sklearn import svm
 svR = svm.SVR(C = 5,gamma = 0.001)
 from sklearn.linear_model import Ridge
@@ -73,7 +73,7 @@ def learnALgos(learningObj,trainData, testData, trainTarget, testTarget):
     rSquare = metrics.r2_score(testTarget, Predictions)
     meanSquareError = metrics.mean_squared_error(testTarget, Predictions)
     outString = learningObj.__class__.__name__  + ',' +str(rSquare) + ',' + str(meanSquareError) + '\n'
-    f= open("result_listScore.txt","a+")
+    f= open("result_listGross.txt","a+")
     f.write(outString)
     f.close()
     print(outString)
