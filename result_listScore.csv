@@ -1,0 +1,9 @@
+,Rsquare(with category info to num),Rsquare(without category info to num),mean square error(with category data to num),mean square error(without category data to num)
+Ridge,0.346831903,0.24142443,0.811257938,0.931923309
+AdaBoostRegressor,0.287666032,0.268144005,0.884744048,0.899097845
+BaggingRegressor,0.409992704,0.401974431,0.732809983,0.734684834
+ExtraTreesRegressor,0.42234885,0.410495868,0.717463212,0.7242161
+GradientBoostingRegressor,0.47349975,-0.00058642,0.65393198,1.229237855
+RandomForestRegressor,0.401337489,0.477201446,0.743560068,0.642267135
+SVR,-0.002145773,0.400806768,1.244700587,0.736119329
+MLPRegressor,-5.05E+12,-407670817.7,6.28E+12,500830705.7

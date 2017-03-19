@@ -31,7 +31,8 @@ for idx in catInfo.columns:
 # the cateLabels has been coverted to num for later use
 cateLabels = pd.concat(cateLabels,axis=1)
 # all the features
-features = pd.concat([cateLabels,fullData[interestNumCols]],axis = 1)
+#features = pd.concat([cateLabels,fullData[interestNumCols]],axis = 1)
+features = fullData[interestNumCols]
 # fill na with average values, if the value is na, then mean give the determination average weight
 features = features.fillna(features.mean())
 # just used as to save a copy of modified features
@@ -45,7 +46,7 @@ trainData, testData, trainTarget, testTarget = train_test_split(features,movieSc
 
 # claim learning objects here
 from sklearn.neural_network import MLPRegressor
-mlpR = MLPRegressor(hidden_layer_sizes = [800,800])
+mlpR = MLPRegressor(hidden_layer_sizes = [8000,8000,8000,8000])
 from sklearn import svm
 svR = svm.SVR(C = 5,gamma = 0.001)
 from sklearn.linear_model import Ridge
@@ -68,7 +69,7 @@ def learnALgos(learningObj,trainData, testData, trainTarget, testTarget):
     #clf = svm.SVC(gamma = gammaList.iloc[i,1],C = gammaList.iloc[i,0],tol = 1e-5,coef0 = 0.1,kernel = 'sigmoid')
     #old one still work
     learningObj.fit(trainData,trainTarget)
-    Predictions = clf.predict(testData)
+    Predictions = learningObj.predict(testData)
     rSquare = metrics.r2_score(testTarget, Predictions)
     meanSquareError = metrics.mean_squared_error(testTarget, Predictions)
     outString = learningObj.__class__.__name__  + ',' +str(rSquare) + ',' + str(meanSquareError) + '\n'
@@ -79,7 +80,7 @@ def learnALgos(learningObj,trainData, testData, trainTarget, testTarget):
 #    return accuracy
 
 # gammaList = pd.read_csv('paraList.csv')
-Parallel(n_jobs=6)(delayed(learnALgos)(learnObj,trainData, testData, trainTarget, testTarget) for learnObj in learningObjs)
+Parallel(n_jobs=3)(delayed(learnALgos)(learnObj,trainData, testData, trainTarget, testTarget) for learnObj in learningObjs)
 # for i in range(len(gammaList)):
 #     svm_fit(i,trainData, testData, trainTarget, testTarget)
 
