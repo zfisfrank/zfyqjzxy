@@ -20,7 +20,7 @@ interestNumCols = ['num_critic_for_reviews', 'duration',
        'aspect_ratio', 'movie_facebook_likes', 'budget_clean', ]
 
 # convert cate informations, each category will have either 0 or 1
-interestCatCols = ['language', 'country','content_rating']
+interestCatCols = ['language', 'country','content_rating','director_name','actor_1_name']
 catInfo = fullData[interestCatCols]
 # le = []
 cateLabels = []
