@@ -21,6 +21,7 @@ interestNumCols = ['num_critic_for_reviews', 'duration',
 
 # convert cate informations, each category will have either 0 or 1
 interestCatCols = ['language', 'country','content_rating','director_name','actor_1_name']
+# interestCatCols = ['language', 'country','content_rating']
 catInfo = fullData[interestCatCols]
 # le = []
 cateLabels = []
@@ -31,15 +32,13 @@ for idx in catInfo.columns:
 # the cateLabels has been coverted to num for later use
 cateLabels = pd.concat(cateLabels,axis=1)
 # all the features
-features = pd.concat([cateLabels,fullData[interestNumCols]],axis = 1)
-# features = fullData[interestNumCols]
+features = fullData[interestNumCols]
 # fill na with average values, if the value is na, then mean give the determination average weight
+features = features.fillna(features.mean())
 
-# function to reject outliners of data
-# def reject_outliers(data, m=5):
-#     return data[abs(data - np.mean(data)) < m * np.std(data)]
+features = pd.concat([cateLabels,features],axis = 1)
+# features = fullData[interestNumCols]
 
-# features = features.fillna(features.mean())
 # just used as to save a copy of modified features
 # features.to_csv('python_modified_features.csv')
 
@@ -86,10 +85,10 @@ def learnALgos(learningObj,trainData, testData, trainTarget, testTarget):
 #    return accuracy
 
 # gammaList = pd.read_csv('paraList.csv')
-Parallel(n_jobs=1)(delayed(learnALgos)(learnObj,trainData, testData, trainTarget, testTarget) for learnObj in learningObjs)
-
-for learnObj in learningObjs:
-    learnALgos(learnObj,trainData, testData, trainTarget, testTarget)
+Parallel(n_jobs=2)(delayed(learnALgos)(learnObj,trainData, testData, trainTarget, testTarget) for learnObj in learningObjs)
+#
+# for learnObj in learningObjs:
+#     learnALgos(learnObj,trainData, testData, trainTarget, testTarget)
 # for i in range(len(gammaList)):
 #     svm_fit(i,trainData, testData, trainTarget, testTarget)
 
