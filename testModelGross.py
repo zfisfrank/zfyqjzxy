@@ -36,13 +36,10 @@ features = pd.concat([cateLabels,fullData[interestNumCols]],axis = 1)
 # fill na with average values, if the value is na, then mean give the determination average weight
 
 # function to reject outliners of data
-# def reject_outliers(data, m=2):
+# def reject_outliers(data, m=5):
 #     return data[abs(data - np.mean(data)) < m * np.std(data)]
-#
-# # replaceValues = features.apply(reject_outliers,axis = 0).mean().to_frame()
-# replaceValues = features.apply(reject_outliers,axis = 0).mean().to_dict()
-# features = features.fillna(replaceValues,axis =0)
-features = features.fillna(0,axis =0)
+
+# features = features.fillna(features.mean())
 # just used as to save a copy of modified features
 # features.to_csv('python_modified_features.csv')
 
