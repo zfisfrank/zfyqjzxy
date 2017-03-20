@@ -80,10 +80,16 @@ def learnALgos(learningObj,trainData, testData, trainTarget, testTarget):
     #old one still work
     learningObj.fit(trainData,trainTarget)
     Predictions = learningObj.predict(testData)
+
     rSquare = metrics.r2_score(testTarget, Predictions)
     meanSquareError = metrics.mean_squared_error(testTarget, Predictions)
-    outString = learningObj.__class__.__name__  + ',' +str(rSquare) + ',' + str(meanSquareError) + '\n'
-    f= open("result_listGross.csv","a+")
+    meanAbsError = metrics.mean_absolute_error(testTarget, Predictions)
+    explainedVarScore = metrics.explained_variance_score(testTarget, Predictions)
+    medianAbsError = metrics.median_absolute_error(testTarget, Predictions)
+
+    outString = learningObj.__class__.__name__  + ',' +str(rSquare) + ',' + str(meanSquareError) +
+        + ',' +str(meanAbsError)+ ',' +str(explainedVarScore)+ ',' +str(medianAbsError)'\n'
+    f= open("resultMorelistGross.csv","a+")
     f.write(outString)
     f.close()
     print(outString)
