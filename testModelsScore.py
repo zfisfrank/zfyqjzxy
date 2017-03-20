@@ -17,7 +17,7 @@ interestNumCols = ['num_critic_for_reviews', 'duration',
        'director_facebook_likes', 'actor_3_facebook_likes',
        'actor_1_facebook_likes', 'num_voted_users', 'cast_total_facebook_likes',
        'facenumber_in_poster', 'num_user_for_reviews', 'title_year', 'actor_2_facebook_likes',
-       'aspect_ratio', 'movie_facebook_likes', 'budget_clean', ]
+       'aspect_ratio', 'movie_facebook_likes', 'budget_clean' ]
 
 # convert cate informations, each category will have either 0 or 1
 interestCatCols = ['language', 'country','content_rating']
