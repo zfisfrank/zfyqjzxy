@@ -34,7 +34,15 @@ cateLabels = pd.concat(cateLabels,axis=1)
 features = pd.concat([cateLabels,fullData[interestNumCols]],axis = 1)
 # features = fullData[interestNumCols]
 # fill na with average values, if the value is na, then mean give the determination average weight
-features = features.fillna(features.mean())
+
+# function to reject outliners of data
+# def reject_outliers(data, m=2):
+#     return data[abs(data - np.mean(data)) < m * np.std(data)]
+#
+# # replaceValues = features.apply(reject_outliers,axis = 0).mean().to_frame()
+# replaceValues = features.apply(reject_outliers,axis = 0).mean().to_dict()
+# features = features.fillna(replaceValues,axis =0)
+features = features.fillna(0,axis =0)
 # just used as to save a copy of modified features
 # features.to_csv('python_modified_features.csv')
 
@@ -81,7 +89,10 @@ def learnALgos(learningObj,trainData, testData, trainTarget, testTarget):
 #    return accuracy
 
 # gammaList = pd.read_csv('paraList.csv')
-Parallel(n_jobs=3)(delayed(learnALgos)(learnObj,trainData, testData, trainTarget, testTarget) for learnObj in learningObjs)
+Parallel(n_jobs=1)(delayed(learnALgos)(learnObj,trainData, testData, trainTarget, testTarget) for learnObj in learningObjs)
+
+for learnObj in learningObjs:
+    learnALgos(learnObj,trainData, testData, trainTarget, testTarget)
 # for i in range(len(gammaList)):
 #     svm_fit(i,trainData, testData, trainTarget, testTarget)
 
