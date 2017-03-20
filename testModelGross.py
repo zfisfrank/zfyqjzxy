@@ -50,7 +50,7 @@ features = pd.concat([cateLabels,features],axis = 1)
 movieScore = fullData['imdb_score'] #target 1
 gross = fullData['gross_clean'] # target 2
 
-trainData, testData, trainTarget, testTarget = train_test_split(features,gross,test_size= .5)
+trainData, testData, trainTarget, testTarget = train_test_split(features,gross,test_size= .4)
 # trainDataGross, testDataGross, trainTargetGross, testTargetGross = train_test_split(features,gross,test_size= .5)
 
 # claim learning objects here
