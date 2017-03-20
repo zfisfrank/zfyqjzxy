@@ -28,6 +28,10 @@ cateLabels = []
 # i = 0
 for idx in catInfo.columns:
     cateLabels.append(pd.get_dummies(catInfo[idx]))
+
+# numlize genres also
+genres = fullData['genres'].str.get_dummies()
+cateLabels.append(genres)
     # i = i+1
 # the cateLabels has been coverted to num for later use
 cateLabels = pd.concat(cateLabels,axis=1)
@@ -85,7 +89,7 @@ def learnALgos(learningObj,trainData, testData, trainTarget, testTarget):
 #    return accuracy
 
 # gammaList = pd.read_csv('paraList.csv')
-Parallel(n_jobs=2)(delayed(learnALgos)(learnObj,trainData, testData, trainTarget, testTarget) for learnObj in learningObjs)
+Parallel(n_jobs=5)(delayed(learnALgos)(learnObj,trainData, testData, trainTarget, testTarget) for learnObj in learningObjs)
 #
 # for learnObj in learningObjs:
 #     learnALgos(learnObj,trainData, testData, trainTarget, testTarget)
