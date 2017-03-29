@@ -48,9 +48,25 @@ features = pd.concat([cateLabels,features],axis = 1)
 # features.to_csv('python_modified_features.csv')
 
 movieScore = fullData['imdb_score'] #target 1
+# gross = fullData['logGross'] # target 2
 gross = fullData['gross_clean'] # target 2
 
-trainData, testData, trainTarget, testTarget = train_test_split(features,gross,test_size= .4)
+
+trainData, testData, trainTarget, testTarget = train_test_split(features,gross,test_size= .2)
+
+gross = full['gross_clean']
+Score = full['imdb_score']
+full = full.drop(['gross_clean','imdb_score'],axis = 1)
+trainData, testData, trainTarget, testTarget = train_test_split(full,gross, test_size= .4)
+veriData, testData, veriTarget, testTarget = train_test_split(testData,testTarget, test_size= .5)
+veriData.to_csv('./dataset/verificationData.csv')
+testData.to_csv('./dataset/testData.csv')
+trainData.to_csv('./dataset/trainData.csv')
+veriTarget.to_csv('./dataset/verificationTargetGross.csv')
+testTarget.to_csv('./dataset/testTargetGross.csv')
+trainTarget.to_csv('./dataset/trainTargetGross.csv')
+
+
 # trainDataGross, testDataGross, trainTargetGross, testTargetGross = train_test_split(features,gross,test_size= .5)
 
 # claim learning objects here
@@ -85,8 +101,7 @@ def learnALgos(learningObj,trainData, testData, trainTarget, testTarget):
     meanAbsError = metrics.mean_absolute_error(testTarget, Predictions)
     explainedVarScore = metrics.explained_variance_score(testTarget, Predictions)
     medianAbsError = metrics.median_absolute_error(testTarget, Predictions)
-    outString = learningObj.__class__.__name__  + ',' +str(rSquare) + ',' + str(meanSquareError)
-        + ',' +str(meanAbsError)+ ',' +str(explainedVarScore)+ ',' +str(medianAbsError)+'\n'
+    outString = '\n' + learningObj.__class__.__name__  + ',' +str(rSquare) + ',' + str(meanSquareError) + ',' + str(meanAbsError)+ ',' + str(explainedVarScore) + ',' +str(medianAbsError)+'\n'
     f= open("resultMorelistGross.csv","a+")
     f.write(outString)
     f.close()
