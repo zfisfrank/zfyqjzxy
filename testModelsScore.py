@@ -74,7 +74,7 @@ def learnALgos(learningObj,trainData, testData, trainTarget, testTarget):
     rSquare = metrics.r2_score(testTarget, Predictions)
     meanSquareError = metrics.mean_squared_error(testTarget, Predictions)
     outString = learningObj.__class__.__name__  + ',' +str(rSquare) + ',' + str(meanSquareError) + '\n'
-    f= open("result_listScore.csv","a+")
+    f= open("result_listScore2.csv","a+")
     f.write(outString)
     f.close()
     print(outString)

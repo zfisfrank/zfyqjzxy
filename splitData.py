@@ -41,5 +41,5 @@ trainData60, validateData20 = train_test_split(trainData80, test_size=0.25
 
 trainData80.to_csv('./dataSet/trainData80.csv')
 testData20.to_csv('./dataSet/testData20.csv')
-trainData80.to_csv('./dataSet/trainData80.csv')
-trainData80.to_csv('./dataSet/trainData80.csv')
+trainData60.to_csv('./dataSet/trainData60.csv')
+validateData20.to_csv('./dataSet/validateData20.csv')
