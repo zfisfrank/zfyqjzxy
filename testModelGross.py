@@ -102,7 +102,7 @@ def learnALgos(learningObj,trainData, testData, trainTarget, testTarget):
     explainedVarScore = metrics.explained_variance_score(testTarget, Predictions)
     medianAbsError = metrics.median_absolute_error(testTarget, Predictions)
     outString = '\n' + learningObj.__class__.__name__  + ',' +str(rSquare) + ',' + str(meanSquareError) + ',' + str(meanAbsError)+ ',' + str(explainedVarScore) + ',' +str(medianAbsError)+'\n'
-    f= open("resultMorelistGross.csv","a+")
+    f= open("results/resultMorelistGross.csv","a+")
     f.write(outString)
     f.close()
     print(outString)
